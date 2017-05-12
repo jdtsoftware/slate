@@ -5,7 +5,7 @@ language_tabs:
   - shell
   - ruby
   - python
-  - javascript
+  - php
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,55 +19,107 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to The Job Space API! 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+You can use our API to access Job and Application API endpoints, which can get information on jobs, applicants, as well as everything else.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'uri'
+require 'net/http'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+url = URI("https://www.thejobspace.com/oauth/token")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Post.new(url)
+request["accept"] = 'application/vnd.jb.v1+json'
+request["postman-token"] = '0623c0c7-3b02-247c-bce7-07e1d60cb476'
+request.body = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"grant_type\"\r\n\r\nclient_credentials\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"client_id\"\r\n\r\n3\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"client_secret\"\r\n\r\nDSjGyNpJBMza03QfknHHUFW3T4f3NPT3ruuSjqjK\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
+
+response = http.request(request)
+puts response.read_body
 ```
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
+url = "https://www.thejobspace.com/oauth/token"
+
+payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"grant_type\"\r\n\r\nclient_credentials\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"client_id\"\r\n\r\n3\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"client_secret\"\r\n\r\nDSjGyNpJBMza03QfknHHUFW3T4f3NPT3ruuSjqjK\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
+headers = {
+    'accept': "application/vnd.jb.v1+json",
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl -X POST \
+  https://www.thejobspace.com/oauth/token \
+  -H 'accept: application/vnd.jb.v1+json' \
+  -F grant_type=client_credentials \
+  -F client_id=CLIENT_ID \
+  -F client_secret=CLIENT_SECRET
 ```
 
-```javascript
-const kittn = require('kittn');
+```php
+<?php
 
-let api = kittn.authorize('meowmeowmeow');
+$request = new HttpRequest();
+$request->setUrl('https://www.thejobspace.com/oauth/token');
+$request->setMethod(HTTP_METH_POST);
+
+$request->setHeaders(array(
+  'accept' => 'application/vnd.jb.v1+json',
+));
+
+$request->setBody('------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="grant_type"
+
+client_credentials
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="client_id"
+
+3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="client_secret"
+
+DSjGyNpJBMza03QfknHHUFW3T4f3NPT3ruuSjqjK
+------WebKitFormBoundary7MA4YWxkTrZu0gW--');
+
+try {
+  $response = $request->send();
+
+  echo $response->getBody();
+} catch (HttpException $ex) {
+  echo $ex;
+}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `CLIENT_ID` and `CLIENT_SECRET` with the credentials given to you.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+The Job Space uses API keys to allow access to the API. You can request new API key by emailing us api@thejobspace.com.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+The Job Space expects all API requests to the server to include a authorisation bearer token to be in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: Bearer OAUTH_ACCESS_TOKEN`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>OAUTH_ACCESS_TOKEN</code> with your access token genreated from /oauth/token using your API key.
 </aside>
 
-# Kittens
+# Job
 
-## Get All Kittens
+## Get All Jobs
 
 ```ruby
 require 'kittn'
