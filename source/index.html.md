@@ -15,6 +15,9 @@ includes:
   - job/read
   - job/create
   - job/update
+  - lookups/countries
+  - lookups/jobtypes
+  - lookups/jobcategories
   - errors
   
 
