@@ -377,8 +377,8 @@ name | true | String Max 255
 description | true | String Max 6500 characters
 benefits | true | String Max 6500 characters
 skills | true | String Max 6500 characters
-open_date | true | Date in format 30-12-2017
-close_date | true | Date in format 30-12-2017 
+open_date | true | Date in format 2017-12-30
+close_date | true | Date in format 2017-12-30 
 country_id | true | Integer - See Look Ups > Countries 
 premise | true | String Max 255
 thoroughfare | true | String Max 255 
