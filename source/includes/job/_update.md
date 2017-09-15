@@ -1,8 +1,8 @@
-## Create a Job
+## Update a Job
 
 ```shell
 curl -X POST \
-  BASE_URL/admin/api/job \
+  BASE_URL/admin/api/job/{id}/update \
   -H 'accept: application/vnd.jb.v1+json' \
   -H 'authorization: Bearer ACCESS_TOKEN' \
   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
@@ -38,7 +38,7 @@ curl -X POST \
 
 $http = new \GuzzleHttp\Client;
 
-$response = $http->post('BASE_URL/admin/api/job', [
+$response = $http->post('BASE_URL/admin/api/job/{id}/update', [
     'headers' => [
         'accept' => 'application/vnd.jb.v1+json',
         'authorization' => 'Bearer ACCESS_TOKEN',
@@ -267,7 +267,7 @@ This endpoint creates a job.
 
 ### HTTP Request
 
-`POST BASE_URL/admin/api/job`
+`POST BASE_URL/admin/api/job/{id}/update`
 
 ### Query Parameters
 

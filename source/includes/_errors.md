@@ -6,6 +6,7 @@ Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request is wrong
 401 | Unauthorized -- Your API key is wrong
+402 | Payment Required -- Your have insufficient tokens to perform your action
 403 | Forbidden -- The resource requested is hidden for administrators only
 404 | Not Found -- The specified resource could not be found
 405 | Method Not Allowed -- You tried to access a resource with an invalid method
