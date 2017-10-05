@@ -13,6 +13,7 @@ includes:
   - authentication/authentication
   - authentication/password
   - authentication/refresh
+  - authentication/basic_auth
   - job/readall
   - job/read
   - job/create
@@ -37,3 +38,12 @@ To access this api you will need the following:
     <li>base_url</li>
 </ul>
 </aside>
+
+## Supply data to all requests
+You will need to supply the following headers to all requests.
+
+### Headers
+
+Parameter | Value | Description
+--------- | ------- | -----------
+Accept | application/vnd.jb.v1+json | Your api client secret. 

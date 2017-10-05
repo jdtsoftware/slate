@@ -6,6 +6,14 @@ e-mail address / username and password. This allows you to issue access tokens
 securely to your first-party clients without requiring your users to go through 
 the entire OAuth2 authorization code redirect flow.
 
+When using this method The Job Space expects all API requests to the server to include a authorisation bearer token to be in a header that looks like the following:
+
+`Authorization: Bearer OAUTH_ACCESS_TOKEN`
+
+<aside class="notice">
+You must replace <code>OAUTH_ACCESS_TOKEN</code> with your access token generated from /oauth/token using your API key.
+</aside>
+
 > To authorize, use this code:
 
 > Make sure to replace `BASE_URL`, `CLIENT_ID`, `CLIENT_SECRET`, `USERNAME`, and `PASSWORD` with the credentials given to you.
