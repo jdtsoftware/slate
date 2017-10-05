@@ -242,20 +242,35 @@ To access this api you will need the following:
 </ul>
 </aside>
 
+<h2 id="supply-data-to-all-requests">Supply data to all requests</h2>
+
+<p>You will need to supply the following headers to all requests.</p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Accept</td>
+<td>application/vnd.jb.v1+json</td>
+<td>Your api client secret.</td>
+</tr>
+</tbody></table>
+
           <h1 id="authentication">Authentication</h1>
 
-<p>The Job Space supports multiple authentication methods. These are all based upon Oauth2. When requesting access to the api please specify which
-type you would like to be set up for. We have the right to change which type you are setup on depending on your use case.</p>
+<p>The Job Space supports multiple authentication methods see below for the currently supported options. 
+ - Oauth2
+ - Basic Auth</p>
 
-<p>The Job Space uses API keys to allow access to the API. You can request new API key by emailing us api@thejobspace.com.</p>
+<p>When requesting access to the api please specify which type you would like to be set up for. We have the right to change which type you are setup on depending on your use case.</p>
 
-<p>The Job Space expects all API requests to the server to include a authorisation bearer token to be in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: Bearer OAUTH_ACCESS_TOKEN</code></p>
-
-<aside class="notice">
-You must replace <code>OAUTH_ACCESS_TOKEN</code> with your access token generated from /oauth/token using your API key.
-</aside>
+<p>The Job Space uses API keys to allow access to the API. You can request new API key by emailing us <code class="prettyprint">api@thejobspace.com</code>.</p>
 
           <h2 id="password-grant">Password Grant</h2>
 
@@ -264,6 +279,14 @@ such as a mobile application, to obtain an access token using an
 e-mail address / username and password. This allows you to issue access tokens 
 securely to your first-party clients without requiring your users to go through 
 the entire OAuth2 authorization code redirect flow.</p>
+
+<p>When using this method The Job Space expects all API requests to the server to include a authorisation bearer token to be in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: Bearer OAUTH_ACCESS_TOKEN</code></p>
+
+<aside class="notice">
+You must replace <code>OAUTH_ACCESS_TOKEN</code> with your access token generated from /oauth/token using your API key.
+</aside>
 
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -423,6 +446,39 @@ CLIENT_ID and CLIENT_SECRET authenticate the vendor while the REFRESH_TOKEN is u
 <td>refresh_token</td>
 <td>REFRESH_TOKEN</td>
 <td>The refresh token given to you when you got the access token.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="basic-auth">Basic Auth</h2>
+
+<p>We support basic auth access to the APIs. This is turned on an account by account basis depending on your need.
+Please specify when requesting an access token that you would like Basic Auth Access.</p>
+
+<p>When using basic auth you will need supply the following headers to all requests.</p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Client-Id</td>
+<td>CLIENT_ID</td>
+<td>Your api client id.</td>
+</tr>
+<tr>
+<td>Client-Secret</td>
+<td>CLIENT_SECRET</td>
+<td>Your api client secret.</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>BASIC Base64 USERNAME:PASSWORD</td>
+<td>Your Basic Auth String.</td>
 </tr>
 </tbody></table>
 
