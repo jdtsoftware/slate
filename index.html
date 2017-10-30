@@ -1652,7 +1652,7 @@ Please specify when requesting an access token that you would like Basic Auth Ac
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint creates a job.</p>
+<p>This endpoint updates a job.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1837,6 +1837,64 @@ Please specify when requesting an access token that you would like Basic Auth Ac
 <td>The email to send candidates to when they apply for the job.</td>
 </tr>
 </tbody></table>
+
+          <h2 id="delete-a-job">Delete a Job</h2>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  BASE_URL/admin/api/job/<span class="o">{</span>id<span class="o">}</span>/delete <span class="se">\</span>
+  -H <span class="s1">'accept: application/vnd.jb.v1+json'</span> <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer ACCESS_TOKEN'</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$http</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\GuzzleHttp\Client</span><span class="p">;</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$http</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">'BASE_URL/admin/api/job/{id}/delete'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/vnd.jb.v1+json'</span><span class="p">,</span>
+        <span class="s1">'authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer ACCESS_TOKEN'</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">]);</span>
+
+<span class="k">return</span> <span class="nb">json_decode</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command, on successful creation, returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example Error 422 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"422 Unprocessable Entity"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Invalid job id."</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example Error 401 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthenticated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a job.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST BASE_URL/admin/api/job/{id}/delete</code></p>
 
           <h1 id="look-ups">Look Ups</h1>
 
