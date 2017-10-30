@@ -263,7 +263,7 @@ return json_decode((string) $response->getBody(), true);
 }
 ```
 
-This endpoint creates a job.
+This endpoint updates a job.
 
 ### HTTP Request
 

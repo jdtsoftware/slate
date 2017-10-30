@@ -18,6 +18,7 @@ includes:
   - job/read
   - job/create
   - job/update
+  - job/delete
   - lookups/options
   - errors  
 
